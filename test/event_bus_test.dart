@@ -103,5 +103,14 @@ void main() {
       expect(events1, <int>[1, 2]);
       expect(events2, <int>[1, 2, 3]);
     });
+
+    test(
+        'publish should print error message and rethrow if an exception occurs.',
+        () {
+      eventBus
+          .subscribe<String>((String e) => throw Exception('test exception'));
+
+      expect(() => eventBus.publish('test event'), throwsA(isA<Exception>()));
+    });
   });
 }

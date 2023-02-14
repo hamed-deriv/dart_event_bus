@@ -7,7 +7,7 @@ class EventBus {
         _listeners[T]?.forEach((Function listener) => listener(event));
       }
     } on Exception catch (e) {
-      print('Error publishing $event: $e');
+      print('Error publishing "$event": $e');
 
       rethrow;
     }
@@ -19,7 +19,7 @@ class EventBus {
         _listeners[T] = <Function>[];
       }
       _listeners[T]?.add(listener);
-      
+
       return listener;
     } on Exception catch (e) {
       print('Error subscribing to event: $e');
